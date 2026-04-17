@@ -140,23 +140,23 @@ c3.metric("Dead (Immature) %", f"{perc_d:.1f}%")
 
 st.markdown("---")
 
-# 4. MATURITY RATIO (M)
-st.subheader("Maturity Ratio (M)")
+# 4. MATURITY RATIO ($M$)
+st.subheader("Maturity Ratio ($M$)")
 st.latex(r"M = \frac{N - D}{200} + 0.70")
 
 col_m1, col_m2 = st.columns([3, 1])
 with col_m1:
     target_m = st.radio("Solve for:", ["Ratio (M)", "Mature % (N)", "Dead % (D)"], horizontal=True, key="solve_m")
-    if target_m == "Ratio (M)":
+    if target_m == "Ratio ($M$)":
         n_in = st.number_input("Mature % (N)", value=perc_m, min_value=0.0, max_value=100.0, key="n_m")
         d_in = st.number_input("Dead % (D)", value=perc_d, min_value=0.0, max_value=100.0, key="d_m")
         res_m = (n_in - d_in) / 200 + 0.70 if (n_in > 0 or d_in > 0) else 0.0
     elif target_m == "Mature % (N)":
-        m_in = st.number_input("Ratio (M)", value=0.0, key="m_n")
+        m_in = st.number_input("Ratio ($M$)", value=0.0, key="m_n")
         d_in = st.number_input("Dead % (D)", value=0.0, key="d_n")
         res_m = 200 * (m_in - 0.70) + d_in if m_in > 0 else 0.0
     else:
-        m_in = st.number_input("Ratio (M)", value=0.0, key="m_d")
+        m_in = st.number_input("Ratio ($M$)", value=0.0, key="m_d")
         n_in = st.number_input("Mature % (N)", value=0.0, key="n_d")
         res_m = n_in - 200 * (m_in - 0.70) if m_in > 0 else 0.0
 
@@ -167,29 +167,29 @@ with col_m2:
 st.markdown("---")
 
 # 5. MATURITY COEFFICIENT (Mc)
-st.subheader("Maturity Coefficient (Mc)")
+st.subheader("Maturity Coefficient (M)")
 st.latex(r"M_c = \frac{Mature\% + 0.6(Half\%) + 0.4(Dead\%)}{100}")
 
 col_mc1, col_mc2 = st.columns([3, 1])
 with col_mc1:
-    target_mc = st.radio("Solve for (Mc):", ["Coefficient (Mc)", "Mature %", "Half-Mature %", "Dead %"], horizontal=True, key="solve_mc")
-    if target_mc == "Coefficient (Mc)":
+    target_mc = st.radio("Solve for (M):", ["Coefficient (M)", "Mature %", "Half-Mature %", "Dead %"], horizontal=True, key="solve_mc")
+    if target_mc == "Coefficient (M)":
         m_val = st.number_input("Mature %", value=perc_m, key="mat_mc")
         h_val = st.number_input("Half-Mature %", value=perc_h, key="half_mc")
         d_val = st.number_input("Dead %", value=perc_d, key="dead_mc")
         res_mc = (m_val + 0.6*h_val + 0.4*d_val) / 100 if (m_val + h_val + d_val) > 0 else 0.0
     elif target_mc == "Mature %":
-        mc_in = st.number_input("Coefficient (Mc)", value=0.0, key="mc_m")
+        mc_in = st.number_input("Coefficient (M)", value=0.0, key="mc_m")
         h_val = st.number_input("Half-Mature %", value=0.0, key="h_m")
         d_val = st.number_input("Dead %", value=0.0, key="d_m_mc")
         res_mc = (100 * mc_in) - (0.6 * h_val) - (0.4 * d_val) if mc_in > 0 else 0.0
     elif target_mc == "Half-Mature %":
-        mc_in = st.number_input("Coefficient (Mc)", value=0.0, key="mc_h")
+        mc_in = st.number_input("Coefficient (M)", value=0.0, key="mc_h")
         m_val = st.number_input("Mature %", value=0.0, key="m_h")
         d_val = st.number_input("Dead %", value=0.0, key="d_h")
         res_mc = ((100 * mc_in) - m_val - (0.4 * d_val)) / 0.6 if mc_in > 0 else 0.0
     else:
-        mc_in = st.number_input("Coefficient (Mc)", value=0.0, key="mc_d")
+        mc_in = st.number_input("Coefficient (M)", value=0.0, key="mc_d")
         m_val = st.number_input("Mature %", value=0.0, key="m_d_mc")
         h_val = st.number_input("Half-Mature %", value=0.0, key="h_d")
         res_mc = ((100 * mc_in) - m_val - (0.6 * h_val)) / 0.4 if mc_in > 0 else 0.0
@@ -206,7 +206,7 @@ with st.expander("📖 View Standard Reference Ranges"):
     df_vis.index = range(1, len(df_vis) + 1)
     st.table(df_vis)
 
-    st.markdown('**2. Maturity Ratio (M)**')
+    st.markdown('**2. Maturity Ratio ($M$)**')
     df_m = pd.DataFrame({"Range": ["< 0.70", "0.70 - 0.80", "0.80 - 1.00", "1.00<"], "Verdict": ["Very Immature", "Immature", "Mature", "Very Mature"]})
     df_m.index = range(1, len(df_m) + 1)
     st.table(df_m)
@@ -250,6 +250,6 @@ st.info("""
 **Parameters & Definitions:**
 * **N:** Percentage of Mature fibers in the sample.
 * **D:** Percentage of Dead (Immature) fibers in the sample.
-* **M:** Maturity Ratio (The degree of cell wall thickening).
-* **Mc:** Maturity Coefficient (Weighted average of fiber types).
+* **$M$:** Maturity Ratio (The degree of cell wall thickening).
+* **M:** Maturity Coefficient (Weighted average of fiber types).
 """)
