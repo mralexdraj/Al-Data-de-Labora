@@ -141,22 +141,22 @@ c3.metric("Dead (Immature) %", f"{perc_d:.1f}%")
 st.markdown("---")
 
 # 4. MATURITY RATIO ($M$)
-st.subheader("Maturity Ratio '(\$M\$)'")
+st.subheader("Maturity Ratio (\$M\$)")
 st.latex(r"M = \frac{N - D}{200} + 0.70")
 
 col_m1, col_m2 = st.columns([3, 1])
 with col_m1:
-    target_m = st.radio("Solve for:", ["Ratio (M)", "Mature % (N)", "Dead % (D)"], horizontal=True, key="solve_m")
+    target_m = st.radio("Solve for:", ["Ratio (\$M\$)", "Mature % (N)", "Dead % (D)"], horizontal=True, key="solve_m")
     if target_m == "Ratio ($M$)":
         n_in = st.number_input("Mature % (N)", value=perc_m, min_value=0.0, max_value=100.0, key="n_m")
         d_in = st.number_input("Dead % (D)", value=perc_d, min_value=0.0, max_value=100.0, key="d_m")
         res_m = (n_in - d_in) / 200 + 0.70 if (n_in > 0 or d_in > 0) else 0.0
     elif target_m == "Mature % (N)":
-        m_in = st.number_input("Ratio ($M$)", value=0.0, key="m_n")
+        m_in = st.number_input("Ratio (\$M\$)", value=0.0, key="m_n")
         d_in = st.number_input("Dead % (D)", value=0.0, key="d_n")
         res_m = 200 * (m_in - 0.70) + d_in if m_in > 0 else 0.0
     else:
-        m_in = st.number_input("Ratio ($M$)", value=0.0, key="m_d")
+        m_in = st.number_input("Ratio (\$M\$)", value=0.0, key="m_d")
         n_in = st.number_input("Mature % (N)", value=0.0, key="n_d")
         res_m = n_in - 200 * (m_in - 0.70) if m_in > 0 else 0.0
 
@@ -206,7 +206,7 @@ with st.expander("📖 View Standard Reference Ranges"):
     df_vis.index = range(1, len(df_vis) + 1)
     st.table(df_vis)
 
-    st.markdown('**2. Maturity Ratio ($M$)**')
+    st.markdown('**2. Maturity Ratio (\$M\$)**')
     df_m = pd.DataFrame({"Range": ["< 0.70", "0.70 - 0.80", "0.80 - 1.00", "1.00<"], "Verdict": ["Very Immature", "Immature", "Mature", "Very Mature"]})
     df_m.index = range(1, len(df_m) + 1)
     st.table(df_m)
@@ -250,6 +250,6 @@ st.info("""
 **Parameters & Definitions:**
 * **N:** Percentage of Mature fibers in the sample.
 * **D:** Percentage of Dead (Immature) fibers in the sample.
-* **$M$:** Maturity Ratio (The degree of cell wall thickening).
+* **\$M\$:** Maturity Ratio (The degree of cell wall thickening).
 * **M:** Maturity Coefficient (Weighted average of fiber types).
 """)
