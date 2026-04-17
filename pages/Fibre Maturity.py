@@ -141,7 +141,7 @@ c3.metric("Dead (Immature) %", f"{perc_d:.1f}%")
 st.markdown("---")
 
 # 4. MATURITY RATIO ($M$)
-st.subheader("Maturity Ratio ($M$)")
+st.subheader("Maturity Ratio '(\$M\$)'")
 st.latex(r"M = \frac{N - D}{200} + 0.70")
 
 col_m1, col_m2 = st.columns([3, 1])
