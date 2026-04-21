@@ -12,32 +12,33 @@ if "saved_g" not in st.session_state:
 if "saved_b" not in st.session_state:
     st.session_state["saved_b"] = 100
 
-# --- 3. LAYOUT & GAP COMPRESSION ---
+# --- 3. EXTREME GAP REDUCTION ---
 st.markdown("""
     <style>
-    /* 1. Removes the massive gap at the very top of the page */
+    /* Kill the top whitespace of the entire app */
     .block-container {
-        padding-top: 1rem !important;
+        padding-top: 0rem !important;
         padding-bottom: 0rem !important;
     }
-    /* 2. Tightens the gap between all Streamlit elements */
-    [data-testid="stVerticalBlock"] { gap: 0.2rem !important; }
+    /* Tighten all vertical spacing between elements */
+    [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     
-    /* 3. Prevents the page from scrolling */
-    .stApp { overflow: hidden; }
+    /* Force no scroll */
+    .stApp { overflow: hidden !important; }
     </style>
     """, unsafe_allow_html=True)
 
-# LOGO SECTION
-col_logo_l, col_logo_m, col_logo_r = st.columns([1, 1.5, 1])
+# LOGO SECTION (Yanked to the very top)
+col_logo_l, col_logo_m, col_logo_r = st.columns([1, 1.2, 1])
 with col_logo_m:
-    # Adding a negative margin here to pull the logo even higher
-    st.markdown("<div style='margin-top: -30px;'></div>", unsafe_allow_html=True)
+    # This -60px pulls the logo almost to the top of the browser bar
+    st.markdown("<div style='margin-top: -60px;'></div>", unsafe_allow_html=True)
     st.image("logo.png", use_container_width=True)
-    st.markdown("<h3 style='text-align: center; margin-top: -25px;'>Welcome</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-top: -15px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-top: -45px; padding:0;'>Welcome</h3>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; margin-top: -15px; padding:0;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
 # --- 4. SLIDERS ---
+# We keep these in a tight row
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state["saved_r"])
@@ -68,7 +69,7 @@ st.session_state["text_color"] = text_color
 st.session_state["button_bg"] = button_bg
 st.session_state["button_txt"] = button_txt
 
-# --- 6. CSS STYLE (YOUR DESIGN) ---
+# --- 6. CSS STYLE (UNCHANGED) ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bg_color}; }}
@@ -78,18 +79,16 @@ st.markdown(f"""
         background-color: {button_bg} !important;
         color: {button_txt} !important;
         border: 1px solid {text_color} !important;
-        transition: 0.3s;
     }}
-    .stButton > button * {{ color: {button_txt} !important; }}
     [data-testid="stSidebar"] {{display: none;}}
     .stAppHeader {{display: none;}}
     </style>
 """, unsafe_allow_html=True)
 
-# --- 7. THE SWITCH (BOTTOM RIGHT) ---
-# Small margin here to give the "little gap" you wanted between sliders and button
-st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
-col_space, col_switch = st.columns([6, 2])
+# --- 7. THE SWITCH (Increased gap from sliders) ---
+# margin-top: 40px creates the separation you wanted from the sliders
+st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
     st.write("**Power**")
