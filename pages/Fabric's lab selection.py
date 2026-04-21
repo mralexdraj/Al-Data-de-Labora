@@ -78,11 +78,11 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("1. Fabric GSM", use_container_width=True):
+    if st.button("Fabric GSM", use_container_width=True):
         st.switch_page("pages/Fabric GSM.py")
 
 with col2:
-    if st.button("2. Fabric Strength", use_container_width=True):
+    if st.button("Fabric Strength", use_container_width=True):
         st.switch_page("pages/Fabric Strength.py")
 
 # --- Row 2 ---
