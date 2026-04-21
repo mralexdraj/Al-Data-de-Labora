@@ -1,44 +1,61 @@
 import streamlit as st
-import time 
+import time
 
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
 # --- 2. INITIALIZE PERMANENT MEMORY ---
 if "saved_r" not in st.session_state:
-    st.session_state["saved_r"] = 0
+    st.session_state["saved_r"] = 100
 if "saved_g" not in st.session_state:
-    st.session_state["saved_g"] = 0
+    st.session_state["saved_g"] = 100
 if "saved_b" not in st.session_state:
-    st.session_state["saved_b"] = 1
+    st.session_state["saved_b"] = 100
 
-# --- 3. EXTREME LAYOUT COMPRESSION ---
+# --- 3. THE "NO-SCROLL" OVERRIDE ---
 st.markdown("""
     <style>
-    .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
-    }
+    /* Kill all default padding */
+    .block-container { padding: 0rem !important; }
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     .stApp { overflow: hidden !important; }
-    </style>
-    """, unsafe_allow_html=True)
 
-# LOGO SECTION (Big Size, Zero Gap)
-col_logo_l, col_logo_m, col_logo_r = st.columns([0.4, 3, 0.4])
-with col_logo_m:
-    # Pulls the logo up to the top edge
-    st.markdown("<div style='margin-top: -90px;'></div>", unsafe_allow_html=True)
-    st.image("logo.png", use_container_width=True)
+    /* Force the header section to the absolute top */
+    .header-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 99;
+    }
+    .header-container img {
+        width: 350px; /* Adjust this to make logo bigger or smaller */
+        margin-top: -10px;
+    }
     
-    # THE KEY FIX: This negative margin-top pulls the word "Welcome" 
-    # almost halfway into the logo's bottom padding to kill the gap.
-    st.markdown("<h2 style='text-align: center; margin-top: -100px; padding:0; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-top: -10px; padding:0; font-size: 1.1rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+    /* Position the Power Button at the absolute bottom right */
+    .footer-container {
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        text-align: right;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# --- 4. SLIDERS (Yanked Up) ---
-# This pulls the sliders even higher toward the text
-st.markdown("<div style='margin-top: -30px;'></div>", unsafe_allow_html=True)
+# 4. LOGO & TEXT (Pinned to Top)
+st.markdown(f"""
+    <div class="header-container">
+        <img src="app/static/logo.png">
+        <div style="margin-top: -40px;">
+            <h2 style="margin:0; padding:0;">Welcome</h2>
+            <p style="margin:0; padding:0;">Before initializing... Mix for your own vision!</p>
+        </div>
+    </div>
+    <div style="margin-top: 280px;"></div> """, unsafe_allow_html=True)
+
+# --- 5. SLIDERS ---
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state["saved_r"])
@@ -51,7 +68,7 @@ st.session_state["saved_r"] = r
 st.session_state["saved_g"] = g
 st.session_state["saved_b"] = b
 
-# --- 5. COLOR LOGIC ---
+# --- 6. COLOR LOGIC ---
 bg_color = f"rgb({r}, {g}, {b})"
 brightness = (r + g + b) / 3
 text_color = "black" if brightness > 128 else "white"
@@ -63,27 +80,27 @@ st.session_state["text_color"] = text_color
 st.session_state["button_bg"] = button_bg
 st.session_state["button_txt"] = button_txt
 
-# --- 6. CSS STYLE ---
+# --- 7. CSS STYLE (YOUR DESIGN) ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bg_color}; }}
-    .stApp *, h1, label, .stMarkdown, .stToggle {{ color: {text_color} !important; }}
+    .stApp *, label, .stMarkdown, .stToggle {{ color: {text_color} !important; }}
     div[data-baseweb="input"] {{ border: 2px solid {text_color} !important; }}
     [data-testid="stSidebar"] {{display: none;}}
     .stAppHeader {{display: none;}}
     </style>
 """, unsafe_allow_html=True)
 
-# --- 7. THE SWITCH ---
-# A small buffer to keep the action button visible at the bottom
-st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
-col_space, col_switch = st.columns([6, 2.5])
-
-with col_switch:
+# --- 8. THE SWITCH (Pinned to Bottom) ---
+# Wrapping the toggle in the footer-container to pin it
+on = False
+with st.container():
+    st.markdown('<div class="footer-container">', unsafe_allow_html=True)
     st.write("**Power**")
     on = st.toggle("Initialize System")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    if on:
-        st.write("⚡ System Online...")
-        time.sleep(0.5) 
-        st.switch_page("pages/Selection.py")
+if on:
+    st.write("⚡ System Online...")
+    time.sleep(0.5)
+    st.switch_page("pages/Selection.py")
