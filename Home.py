@@ -5,7 +5,9 @@ import time # Needed for the delay effect
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
 st.image("logo.png")
-    
+
+st.markdown("<style>div.stVerticalBlock { gap: 0rem; }</style>", unsafe_allow_html=True)
+
 st.write("Welcome")
 st.write("Before initializing... Mix for your own vision!")
 
