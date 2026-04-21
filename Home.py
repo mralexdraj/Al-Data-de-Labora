@@ -4,13 +4,19 @@ import time # Needed for the delay effect
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
-left_co, cent_co, last_co = st.columns([0.2, 3, 0.2])
+left_co, cent_co, last_co = st.columns([0.1, 3, 0.1])
 
 with cent_co:
     st.image("logo.png", use_container_width=True)
 
-st.markdown('<style>div.block-container{padding-top:2rem;}</style>', unsafe_allow_html=True)
-st.markdown('<div style="margin-top: -50px;"></div>', unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        /* Reduces the gap between all blocks */
+        .element-container { margin-bottom: -1.5rem; }
+        /* Forces the text to move up further */
+        div.stMarkdown { margin-top: -2rem; }
+    </style>
+    """, unsafe_allow_html=True)
 
 st.write("Welcome")
 st.write("Before initializing... Mix for your own vision!")
