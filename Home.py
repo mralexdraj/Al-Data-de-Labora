@@ -11,8 +11,6 @@ st.markdown("""
         <div style="text-align: center;">
             <img src="app/static/logo.png" style="width: 100%; display: block; margin: 0 auto;">
             <div style="margin-top: -40px;">
-                <h2 style="margin: 0; padding: 0; color: white;">Welcome</h2>
-                <p style="margin: 0; padding: 0;">Before initializing... Mix for your own vision!</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
