@@ -7,7 +7,7 @@ st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state=
 left_co, cent_co, last_co = st.columns([0.1, 3, 0.1])
 
 with cent_co:
-st.image("logo.png", use_container_width=True)
+        st.image("logo.png", use_container_width=True)
 st.markdown("""
         <div style="text-align: center;">
             <img src="app/static/logo.png" style="width: 100%; display: block; margin: 0 auto;">
