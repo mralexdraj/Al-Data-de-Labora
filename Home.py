@@ -4,13 +4,13 @@ import time
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
-# --- 2. CSS OVERRIDE (MAX COMPRESSION) ---
+# --- 2. CSS OVERRIDE (THE "NO-SCROLL" LOCK) ---
 st.markdown("""
     <style>
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
-        margin-top: -60px !important;
+        margin-top: -65px !important;
     }
     .stApp { overflow: hidden !important; }
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
@@ -23,13 +23,13 @@ with col_m:
     st.image("logo.png", use_container_width=True)
 
 # --- 4. WORDINGS (EXTREME LIFT) ---
-st.markdown("<div style='margin-top: -110px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: -115px;'></div>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; font-weight: bold; margin:0;'>Welcome</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; margin-top: -10px; font-size: 1.1rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 5. SLIDERS (FINAL RAISE) ---
-# Increased lift from -40px to -55px
-st.markdown("<div style='margin-top: -55px;'></div>", unsafe_allow_html=True)
+# --- 5. SLIDERS (RAISED EVEN MORE) ---
+# Increased lift from -55px to -70px
+st.markdown("<div style='margin-top: -70px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state.get("saved_r", 100))
@@ -65,9 +65,9 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# --- 8. THE SWITCH (FINAL RAISE) ---
-# Pulled the button section up further to ensure no scroll
-st.markdown("<div style='margin-top: -10px;'></div>", unsafe_allow_html=True)
+# --- 8. THE SWITCH (FINAL RAISED POSITION) ---
+# Increased lift from -10px to -35px
+st.markdown("<div style='margin-top: -35px;'></div>", unsafe_allow_html=True)
 col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
@@ -77,4 +77,3 @@ with col_switch:
         st.write("⚡ System Online...")
         time.sleep(0.5)
         st.switch_page("pages/Selection.py")
-        
