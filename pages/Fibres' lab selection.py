@@ -77,44 +77,44 @@ st.markdown("---")
 # --- Row 1 ---
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("1. Fibre diameter", use_container_width=True):
+    if st.button("Fibre diameter", use_container_width=True):
         st.switch_page("pages/Fibre Diameter.py")
 with col2:
-    if st.button("2. Fibre fineness", use_container_width=True):
+    if st.button("Fibre fineness", use_container_width=True):
         st.switch_page("pages/Fibre Fineness.py")
 
 # --- Row 2 ---
 col3, col4 = st.columns(2)
 with col3:
-    if st.button("3. Fibre Maturity", use_container_width=True):
+    if st.button("Fibre Maturity", use_container_width=True):
         st.switch_page("pages/Fibre Maturity.py")
 with col4:
-    if st.button("4. Fibre Crimp", use_container_width=True):
+    if st.button("Fibre Crimp", use_container_width=True):
         st.switch_page("pages/Fibre Crimp.py")
 
 # --- Row 3 ---
 col5, col6 = st.columns(2)
 with col5:
-    if st.button("5. Fibre Moisture", use_container_width=True):
+    if st.button("Fibre Moisture", use_container_width=True):
         st.switch_page("pages/Fibre Moisture.py")
 with col6:
-    if st.button("6. Fibre Length", use_container_width=True):
+    if st.button("Fibre Length", use_container_width=True):
         st.switch_page("pages/Fibre Length.py")
 
 # --- Row 4 ---
 col7, col8 = st.columns(2)
 with col7:
-    if st.button("7. Fibre Quality index", use_container_width=True):
+    if st.button("Fibre Quality index", use_container_width=True):
         st.switch_page("pages/Fibre Quality Index.py")
 with col8:
-    if st.button("8. Spinning consistency Index", use_container_width=True):
+    if st.button("Spinning consistency Index", use_container_width=True):
         st.switch_page("pages/Spinning Consistency Index.py")
 
 # --- Row 5 ---
 col9, col10 = st.columns(2)
 with col9:
-    if st.button("9. Trash content", use_container_width=True):
+    if st.button("Trash content", use_container_width=True):
         st.switch_page("pages/Trash content.py")
 with col10:
-    if st.button("10. Fibre Bundle Strength", use_container_width=True):
+    if st.button("Fibre Bundle Strength", use_container_width=True):
         st.switch_page("pages/Fibre Bundle Strength.py")
