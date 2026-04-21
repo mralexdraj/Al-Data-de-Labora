@@ -4,6 +4,12 @@ import time # Needed for the delay effect
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
+
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.image("logo.png", use_container_width=True)
+    
 st.title("Al Data de Labora")
 st.write("Welcome")
 st.write("Before initializing... Mix for your own vision!")
