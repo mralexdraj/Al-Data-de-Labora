@@ -12,51 +12,55 @@ if "saved_g" not in st.session_state:
 if "saved_b" not in st.session_state:
     st.session_state["saved_b"] = 100
 
-# --- 3. THE "NO-SCROLL" OVERRIDE ---
+# --- 3. THE "FLEX" LAYOUT (The fix for your image) ---
 st.markdown("""
     <style>
-    /* Kill all default padding */
-    .block-container { padding: 0rem !important; }
-    [data-testid="stVerticalBlock"] { gap: 0rem !important; }
-    .stApp { overflow: hidden !important; }
-
-    /* Force the header section to the absolute top */
-    .header-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        z-index: 99;
+    /* 1. Remove all padding and stop scrolling */
+    .block-container {
+        padding: 0rem !important;
+        max-width: 100%;
     }
-    .header-container img {
-        width: 350px; /* Adjust this to make logo bigger or smaller */
-        margin-top: -10px;
+    .stApp {
+        overflow: hidden !important;
+        height: 100vh;
     }
     
-    /* Position the Power Button at the absolute bottom right */
-    .footer-container {
-        position: absolute;
-        bottom: 20px;
-        right: 40px;
-        text-align: right;
+    /* 2. Center everything and remove the massive top gap */
+    [data-testid="stVerticalBlock"] {
+        gap: 0rem !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 3. Force Logo size and pull text close */
+    .main-header {
+        text-align: center;
+        margin-top: -20px; /* Pulls it away from the browser top */
+    }
+    .main-header img {
+        width: 400px; /* Big enough for your vision */
+        margin-bottom: -40px;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# 4. LOGO & TEXT (Pinned to Top)
+# 4. LOGO & TEXT
 st.markdown(f"""
-    <div class="header-container">
+    <div class="main-header">
         <img src="app/static/logo.png">
-        <div style="margin-top: -40px;">
-            <h2 style="margin:0; padding:0;">Welcome</h2>
-            <p style="margin:0; padding:0;">Before initializing... Mix for your own vision!</p>
-        </div>
+        <h2 style="margin:0; padding:0; font-weight: bold;">Welcome</h2>
+        <p style="margin:0; padding:0; font-size: 1.1rem;">Before initializing... Mix for your own vision!</p>
     </div>
-    <div style="margin-top: 280px;"></div> """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
+# Add a tiny bit of air before the sliders
+st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
 
 # --- 5. SLIDERS ---
-col1, col2, col3 = st.columns(3)
+# We keep these in 3 columns but wrap them so they don't hit the edges
+col_pad1, col1, col2, col3, col_pad2 = st.columns([0.2, 1, 1, 1, 0.2])
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state["saved_r"])
 with col2:
@@ -80,7 +84,7 @@ st.session_state["text_color"] = text_color
 st.session_state["button_bg"] = button_bg
 st.session_state["button_txt"] = button_txt
 
-# --- 7. CSS STYLE (YOUR DESIGN) ---
+# --- 7. CSS STYLE (YOUR ORIGINAL DESIGN) ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bg_color}; }}
@@ -91,16 +95,15 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# --- 8. THE SWITCH (Pinned to Bottom) ---
-# Wrapping the toggle in the footer-container to pin it
-on = False
-with st.container():
-    st.markdown('<div class="footer-container">', unsafe_allow_html=True)
+# --- 8. THE SWITCH (Bottom Right) ---
+st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
+col_space, col_switch = st.columns([6, 2])
+
+with col_switch:
     st.write("**Power**")
     on = st.toggle("Initialize System")
-    st.markdown('</div>', unsafe_allow_html=True)
 
-if on:
-    st.write("⚡ System Online...")
-    time.sleep(0.5)
-    st.switch_page("pages/Selection.py")
+    if on:
+        st.write("⚡ System Online...")
+        time.sleep(0.5)
+        st.switch_page("pages/Selection.py")
