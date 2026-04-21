@@ -15,34 +15,30 @@ if "saved_b" not in st.session_state:
 # --- 3. EXTREME LAYOUT COMPRESSION ---
 st.markdown("""
     <style>
-    /* Remove all top padding from the app container */
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
     }
-    /* Kill vertical gaps between elements */
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
-    
-    /* Disable scrolling */
     .stApp { overflow: hidden !important; }
     </style>
     """, unsafe_allow_html=True)
 
-# LOGO SECTION (Bigger Logo & Positioned Higher)
-# We change columns to [0.5, 3, 0.5] to make the middle column (the logo) much wider
-col_logo_l, col_logo_m, col_logo_r = st.columns([0.5, 3, 0.5])
+# LOGO SECTION (Big Size, Zero Gap)
+col_logo_l, col_logo_m, col_logo_r = st.columns([0.4, 3, 0.4])
 with col_logo_m:
-    # This -80px pulls the logo right to the top edge
-    st.markdown("<div style='margin-top: -80px;'></div>", unsafe_allow_html=True)
+    # Pulls the logo up to the top edge
+    st.markdown("<div style='margin-top: -90px;'></div>", unsafe_allow_html=True)
     st.image("logo.png", use_container_width=True)
     
-    # Yanking wordings up into the logo space
-    st.markdown("<h2 style='text-align: center; margin-top: -60px; padding:0; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-top: -15px; padding:0; font-size: 1.2rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+    # THE KEY FIX: This negative margin-top pulls the word "Welcome" 
+    # almost halfway into the logo's bottom padding to kill the gap.
+    st.markdown("<h2 style='text-align: center; margin-top: -100px; padding:0; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; margin-top: -10px; padding:0; font-size: 1.1rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 4. SLIDERS (Moved Up) ---
-# Margin-top: -20px pulls the sliders closer to the text
-st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
+# --- 4. SLIDERS (Yanked Up) ---
+# This pulls the sliders even higher toward the text
+st.markdown("<div style='margin-top: -30px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state["saved_r"])
@@ -79,8 +75,8 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # --- 7. THE SWITCH ---
-# Reduced margin here to keep it on the same screen
-st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+# A small buffer to keep the action button visible at the bottom
+st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
 col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
