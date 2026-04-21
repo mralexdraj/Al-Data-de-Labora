@@ -7,16 +7,12 @@ st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state=
 # --- 2. CSS OVERRIDE (MAX COMPRESSION) ---
 st.markdown("""
     <style>
-    /* Pull the whole app container to the absolute top edge */
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
         margin-top: -60px !important;
     }
-    /* Disable scrolling completely */
     .stApp { overflow: hidden !important; }
-    
-    /* Kill vertical spacing between all elements */
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     </style>
 """, unsafe_allow_html=True)
@@ -27,14 +23,13 @@ with col_m:
     st.image("logo.png", use_container_width=True)
 
 # --- 4. WORDINGS (EXTREME LIFT) ---
-# Increased to -110px to force the text up against the logo image
 st.markdown("<div style='margin-top: -110px;'></div>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; font-weight: bold; margin:0;'>Welcome</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; margin-top: -10px; font-size: 1.1rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 5. SLIDERS (EXTREME LIFT) ---
-# Yanking the sliders up into the wording space
-st.markdown("<div style='margin-top: -40px;'></div>", unsafe_allow_html=True)
+# --- 5. SLIDERS (FINAL RAISE) ---
+# Increased lift from -40px to -55px
+st.markdown("<div style='margin-top: -55px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state.get("saved_r", 100))
@@ -70,9 +65,9 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# --- 8. THE SWITCH (FINAL POSITION) ---
-# Tucked in right under the sliders to prevent any scrolling
-st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
+# --- 8. THE SWITCH (FINAL RAISE) ---
+# Pulled the button section up further to ensure no scroll
+st.markdown("<div style='margin-top: -10px;'></div>", unsafe_allow_html=True)
 col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
@@ -82,3 +77,4 @@ with col_switch:
         st.write("⚡ System Online...")
         time.sleep(0.5)
         st.switch_page("pages/Selection.py")
+        
