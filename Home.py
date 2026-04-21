@@ -4,33 +4,36 @@ import time
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
-# --- 2. THE CSS KILL-SWITCH (Removes the top gap completely) ---
+# --- 2. THE CSS OVERRIDE ---
 st.markdown("""
     <style>
-    /* Remove the massive white space at the top of every Streamlit app */
+    /* Kill the top whitespace and stop the scroll */
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
-        margin-top: -50px !important;
+        margin-top: -30px !important;
     }
-    /* Stop the page from scrolling */
     .stApp { overflow: hidden !important; }
-    /* Tighten space between elements */
+    
+    /* Tighten all standard gaps */
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     </style>
 """, unsafe_allow_html=True)
 
-# --- 3. LOGO & WELCOME ---
-# Using native st.image because the HTML version was failing to find the file
-col_l, col_m, col_r = st.columns([1, 2.5, 1])
+# --- 3. LOGO SECTION ---
+col_l, col_m, col_r = st.columns([1, 2.2, 1])
 with col_m:
     st.image("logo.png", use_container_width=True)
-    st.markdown("<h2 style='text-align: center; margin-top: -60px;'>Welcome</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-top: -10px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 4. SLIDERS ---
-# Resetting the sliders to sit naturally
-st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+# --- 4. WORDINGS (LIFTED UP) ---
+# This is the "Yank" command. -80px pulls the wordings into the logo's bottom gap.
+st.markdown("<div style='margin-top: -80px;'></div>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; margin-top: -10px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+
+# --- 5. SLIDERS (LIFTED UP) ---
+# Pulls the sliders higher toward the text
+st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state.get("saved_r", 100))
@@ -43,7 +46,7 @@ st.session_state["saved_r"] = r
 st.session_state["saved_g"] = g
 st.session_state["saved_b"] = b
 
-# --- 5. COLOR LOGIC ---
+# --- 6. COLOR LOGIC ---
 bg_color = f"rgb({r}, {g}, {b})"
 brightness = (r + g + b) / 3
 text_color = "black" if brightness > 128 else "white"
@@ -55,7 +58,7 @@ st.session_state["text_color"] = text_color
 st.session_state["button_bg"] = button_bg
 st.session_state["button_txt"] = button_txt
 
-# --- 6. CSS STYLE (YOUR DESIGN) ---
+# --- 7. CSS STYLE (YOUR DESIGN) ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bg_color}; }}
@@ -66,9 +69,10 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# --- 7. THE SWITCH ---
-st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
-col_space, col_switch = st.columns([6, 2])
+# --- 8. THE SWITCH (LIFTED UP) ---
+# Reduced the margin-top to 20px so it fits on one screen
+st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
     st.write("**Power**")
