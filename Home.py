@@ -8,6 +8,12 @@ left_co, cent_co, last_co = st.columns([0.1, 3, 0.1])
 
 with cent_co:
     st.image("logo.png", use_container_width=True)
+st.markdown("""
+        <div style="margin-top: -80px; text-align: center;">
+            <h2 style="margin-bottom: 0px; color: white;">Welcome</h2>
+            <p style="margin-top: 5px;">Before initializing... Mix for your own vision!</p>
+        </div>
+        """, unsafe_allow_html=True)
     
 st.write("Welcome")
 st.write("Before initializing... Mix for your own vision!")
