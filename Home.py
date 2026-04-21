@@ -4,13 +4,12 @@ import time # Needed for the delay effect
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
-left_co, cent_co, last_co = st.columns([0.2, 3, 0.2])
+left_co, cent_co, last_co = st.columns([0.1, 3, 0.1])
 
 with cent_co:
     st.image("logo.png", use_container_width=True)
-
-st.markdown("<h3 style='text-align: center; margin-top: -20px;'>Welcome</h3>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; margin-top: -50px;'>Welcome</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; margin-top: -10px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
 st.write("Welcome")
 st.write("Before initializing... Mix for your own vision!")
