@@ -11,7 +11,6 @@ with cent_co:
 st.markdown("""
         <div style="margin-top: -80px; text-align: center;">
             <h2 style="margin-bottom: 0px; color: white;">Welcome</h2>
-            <p style="margin-top: 5px;">Before initializing... Mix for your own vision!</p>
         </div>
         """, unsafe_allow_html=True)
     
