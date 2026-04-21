@@ -79,41 +79,41 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("1. Yarn Count Conversion", use_container_width=True):
+    if st.button("Yarn Count Conversion", use_container_width=True):
         st.switch_page("pages/Yarn Count Conversion.py")
 
 with col2:
-    if st.button("2. Count of Ply yarns", use_container_width=True):
+    if st.button("Count of Ply yarns", use_container_width=True):
         st.switch_page("pages/Count of Ply yarns.py")
 
 # --- Row 2 ---
 col3, col4 = st.columns(2)
 
 with col3:
-    if st.button("3. Yarn TPI", use_container_width=True):
+    if st.button("Yarn TPI", use_container_width=True):
         st.switch_page("pages/Yarn TPI.py")
 with col4:
-    if st.button("4. Metric count", use_container_width=True):
+    if st.button("Metric count", use_container_width=True):
         st.switch_page("pages/Metric count.py")
 
 # --- Row 3 ---
 col3, col4 = st.columns(2)
 
 with col3:
-    if st.button("5. Tex", use_container_width=True):
+    if st.button("Tex", use_container_width=True):
         st.switch_page("pages/Tex.py")
 with col4:
-    if st.button("6. Denier", use_container_width=True):
+    if st.button("Denier", use_container_width=True):
         st.switch_page("pages/Denier.py")
 
 # --- Row 4 ---
 col3, col4 = st.columns(2)
 
 with col3:
-    if st.button("7. English Count", use_container_width=True):
+    if st.button("English Count", use_container_width=True):
         st.switch_page("pages/English count.py")
 with col4:
-    if st.button("8. Yarn Strength and CSP", use_container_width=True):
+    if st.button("Yarn Strength and CSP", use_container_width=True):
         st.switch_page("pages/Yarn strength and CSP.py")
 
 col3, col4 = st.columns(2)
