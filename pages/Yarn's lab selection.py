@@ -79,8 +79,8 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("1. Yarn Count conversion", use_container_width=True):
-        st.switch_page("pages/Yarn count conversion.py")
+    if st.button("1. Yarn Count Conversion", use_container_width=True):
+        st.switch_page("pages/Yarn Count Conversion.py")
 
 with col2:
     if st.button("2. Count of Ply yarns", use_container_width=True):
