@@ -4,18 +4,19 @@ import time
 # 1. PAGE CONFIG
 st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
 
-# --- 2. THE CSS OVERRIDE ---
+# --- 2. CSS OVERRIDE (MAX COMPRESSION) ---
 st.markdown("""
     <style>
-    /* Kill the top whitespace and stop the scroll */
+    /* Pull the whole app container to the absolute top edge */
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
-        margin-top: -30px !important;
+        margin-top: -60px !important;
     }
+    /* Disable scrolling completely */
     .stApp { overflow: hidden !important; }
     
-    /* Tighten all standard gaps */
+    /* Kill vertical spacing between all elements */
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     </style>
 """, unsafe_allow_html=True)
@@ -25,15 +26,15 @@ col_l, col_m, col_r = st.columns([1, 2.2, 1])
 with col_m:
     st.image("logo.png", use_container_width=True)
 
-# --- 4. WORDINGS (LIFTED UP) ---
-# This is the "Yank" command. -80px pulls the wordings into the logo's bottom gap.
-st.markdown("<div style='margin-top: -80px;'></div>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; margin-top: -10px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+# --- 4. WORDINGS (EXTREME LIFT) ---
+# Increased to -110px to force the text up against the logo image
+st.markdown("<div style='margin-top: -110px;'></div>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; font-weight: bold; margin:0;'>Welcome</h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; margin-top: -10px; font-size: 1.1rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 5. SLIDERS (LIFTED UP) ---
-# Pulls the sliders higher toward the text
-st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
+# --- 5. SLIDERS (EXTREME LIFT) ---
+# Yanking the sliders up into the wording space
+st.markdown("<div style='margin-top: -40px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state.get("saved_r", 100))
@@ -69,9 +70,9 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# --- 8. THE SWITCH (LIFTED UP) ---
-# Reduced the margin-top to 20px so it fits on one screen
-st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+# --- 8. THE SWITCH (FINAL POSITION) ---
+# Tucked in right under the sliders to prevent any scrolling
+st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
 col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
