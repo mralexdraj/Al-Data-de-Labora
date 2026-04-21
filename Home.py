@@ -6,39 +6,43 @@ st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state=
 
 # --- 2. INITIALIZE PERMANENT MEMORY ---
 if "saved_r" not in st.session_state:
-    st.session_state["saved_r"] = 100
+    st.session_state["saved_r"] = 0
 if "saved_g" not in st.session_state:
-    st.session_state["saved_g"] = 100
+    st.session_state["saved_g"] = 0
 if "saved_b" not in st.session_state:
-    st.session_state["saved_b"] = 100
+    st.session_state["saved_b"] = 1
 
-# --- 3. EXTREME GAP REDUCTION ---
+# --- 3. EXTREME LAYOUT COMPRESSION ---
 st.markdown("""
     <style>
-    /* Kill the top whitespace of the entire app */
+    /* Remove all top padding from the app container */
     .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
     }
-    /* Tighten all vertical spacing between elements */
+    /* Kill vertical gaps between elements */
     [data-testid="stVerticalBlock"] { gap: 0rem !important; }
     
-    /* Force no scroll */
+    /* Disable scrolling */
     .stApp { overflow: hidden !important; }
     </style>
     """, unsafe_allow_html=True)
 
-# LOGO SECTION (Yanked to the very top)
-col_logo_l, col_logo_m, col_logo_r = st.columns([1, 1.2, 1])
+# LOGO SECTION (Bigger Logo & Positioned Higher)
+# We change columns to [0.5, 3, 0.5] to make the middle column (the logo) much wider
+col_logo_l, col_logo_m, col_logo_r = st.columns([0.5, 3, 0.5])
 with col_logo_m:
-    # This -60px pulls the logo almost to the top of the browser bar
-    st.markdown("<div style='margin-top: -60px;'></div>", unsafe_allow_html=True)
+    # This -80px pulls the logo right to the top edge
+    st.markdown("<div style='margin-top: -80px;'></div>", unsafe_allow_html=True)
     st.image("logo.png", use_container_width=True)
-    st.markdown("<h3 style='text-align: center; margin-top: -45px; padding:0;'>Welcome</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; margin-top: -15px; padding:0;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+    
+    # Yanking wordings up into the logo space
+    st.markdown("<h2 style='text-align: center; margin-top: -60px; padding:0; font-weight: bold;'>Welcome</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; margin-top: -15px; padding:0; font-size: 1.2rem;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
 
-# --- 4. SLIDERS ---
-# We keep these in a tight row
+# --- 4. SLIDERS (Moved Up) ---
+# Margin-top: -20px pulls the sliders closer to the text
+st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
     r = st.slider("Red", 0, 255, value=st.session_state["saved_r"])
@@ -54,40 +58,29 @@ st.session_state["saved_b"] = b
 # --- 5. COLOR LOGIC ---
 bg_color = f"rgb({r}, {g}, {b})"
 brightness = (r + g + b) / 3
-
-if brightness > 128:
-    text_color = "black"
-    button_bg = "#222222"
-    button_txt = "#ffffff"
-else:
-    text_color = "white"
-    button_bg = "#eeeeee"
-    button_txt = "#000000"
+text_color = "black" if brightness > 128 else "white"
+button_bg = "#222222" if brightness > 128 else "#eeeeee"
+button_txt = "#ffffff" if brightness > 128 else "#000000"
 
 st.session_state["bg_color"] = bg_color
 st.session_state["text_color"] = text_color
 st.session_state["button_bg"] = button_bg
 st.session_state["button_txt"] = button_txt
 
-# --- 6. CSS STYLE (UNCHANGED) ---
+# --- 6. CSS STYLE ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bg_color}; }}
     .stApp *, h1, label, .stMarkdown, .stToggle {{ color: {text_color} !important; }}
     div[data-baseweb="input"] {{ border: 2px solid {text_color} !important; }}
-    .stButton > button {{
-        background-color: {button_bg} !important;
-        color: {button_txt} !important;
-        border: 1px solid {text_color} !important;
-    }}
     [data-testid="stSidebar"] {{display: none;}}
     .stAppHeader {{display: none;}}
     </style>
 """, unsafe_allow_html=True)
 
-# --- 7. THE SWITCH (Increased gap from sliders) ---
-# margin-top: 40px creates the separation you wanted from the sliders
-st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+# --- 7. THE SWITCH ---
+# Reduced margin here to keep it on the same screen
+st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
 col_space, col_switch = st.columns([6, 2.5])
 
 with col_switch:
