@@ -29,7 +29,9 @@ with col_m:
 # Small -20px nudge just to keep it snug, but no overlapping!
 st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; font-weight: bold; margin:0;'>Welcome</h2>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; margin-top: -5px;'>Before initializing... Mix for your own vision!</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; margin-top: -5px;'>Need a Double-Check? Not here!</p>", unsafe_allow_html=True)
+
+st.write("Before initializing... Mix for your own vision")
 
 # --- 5. SLIDERS ---
 st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
