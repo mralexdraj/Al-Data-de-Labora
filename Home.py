@@ -31,7 +31,8 @@ st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
 st.markdown("<h4 style='text-align: center; margin-top: -5px;'>Need a Double-Check? Not here!</h4>", unsafe_allow_html=True)
 st.write("")
 st.write("")
-st.write("[bold]Before initializing... Mix for your own vision[/bold]")
+st.write("")
+st.write("Before initializing... Mix for your own vision")
 
 # --- 5. SLIDERS ---
 st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
