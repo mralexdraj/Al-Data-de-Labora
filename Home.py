@@ -28,7 +28,8 @@ with col_m:
 # --- 4. WORDINGS (Natural Spacing) ---
 # Small -20px nudge just to keep it snug, but no overlapping!
 st.markdown("<div style='margin-top: -20px;'></div>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center; margin-top: -5px;'>Need a Double-Check? Not here!</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; margin-top: -5px;'>   Need a Double-Check? Not here!</h4>", unsafe_allow_html=True)
+st.write("")
 st.write("")
 st.write("")
 st.write("")
