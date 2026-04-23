@@ -69,7 +69,7 @@ st.markdown(f"""
 
 # --- 8. THE SWITCH ---
 st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-col_space, col_switch = st.columns([8, 2.5])
+col_space, col_switch = st.columns([9, 2.5])
 st.write("")
 with col_switch:
     st.write("**Power**")
