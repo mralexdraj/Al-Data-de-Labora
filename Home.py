@@ -2,7 +2,7 @@ import streamlit as st
 import time
 
 # 1. PAGE CONFIG
-st.set_page_config(page_title="Texopedia", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Al Data de Labora", layout="wide", initial_sidebar_state="collapsed")
 
 # --- 2. CLEAN CSS (No more extreme fighting) ---
 st.markdown("""
@@ -21,7 +21,7 @@ st.markdown("""
 
 # --- 3. LOGO SECTION ---
 # Now that it's cropped, we can use a smaller column to keep it centered but manageable
-col_l, col_m, col_r = st.columns([1, 1.8, 1])
+col_l, col_m, col_r = st.columns([1, 2, 1])
 with col_m:
     st.image("logo.png", use_container_width=True)
 
